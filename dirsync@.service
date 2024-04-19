@@ -1,0 +1,15 @@
+[Unit]
+Description=Directory-Syncer
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=<USER>
+EnvironmentFile=<PATH>/.env_%I
+ExecStart=/usr/bin/env bash /usr/local/bin/dirsync ${SOURCE} ${DEST} ${VERBOSE}
+
+[Install]
+WantedBy=default.target
